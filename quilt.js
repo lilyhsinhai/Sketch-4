@@ -19,7 +19,7 @@ function tileQuilt() {
   var gridSize = sqrt(quilts.length);
   var step = width / gridSize;
   for (const quilt of quilts) {
-    image(quilt, x, y, x + step, y + step);
+    image(quilt, x, y, step, step);
     x += step;
     if (x >= width) {
       x = 0;
