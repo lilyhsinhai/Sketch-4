@@ -1,4 +1,4 @@
-# Sketch 4
+# Sketch-4
  
 **ToDo**
 - [x] create a grid of quilt sections (images)
