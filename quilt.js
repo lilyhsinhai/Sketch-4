@@ -1,6 +1,8 @@
 //Sketch 4 - Lily Hsin-Hai
 
 const quilts = [];
+var gridSize;
+var step;
 
 function setup() {
   createCanvas(800, 800);
@@ -30,18 +32,24 @@ function setup() {
   quilts.push(loadImage('quilts/blue.jpg'));
   quilts.push(loadImage('quilts/blobs.jpg'));
 
+  gridSize = sqrt(quilts.length);
+  step = width / gridSize;
+  
 }
 
 function draw() {
   tileQuilt();
-
+  var row = floor(mouseX/step);
+  var col = floor(mouseY/step);
+  fill(255,100);
+  stroke(255);
+  strokeWeight(3);
+  rect(step*row, step*col, step, step);
 }
 
 function tileQuilt() {
   var x = 0;
   var y = 0;
-  var gridSize = sqrt(quilts.length);
-  var step = width / gridSize;
   for (const quilt of quilts) {
     image(quilt, x, y, step, step);
     x += step;
