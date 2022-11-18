@@ -2,7 +2,7 @@
  
 **ToDo**
 - [x] create a grid of quilt sections (images)
-- [ ] crop and add my 25 images
+- [x] crop and add my 25 images
 - [ ] add a mousePressed function
 	- [ ] when you click on a tile, that tile repeats across the whole screen
 	- [ ] the tiles repeat in different rotations
