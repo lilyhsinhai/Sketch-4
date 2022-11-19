@@ -3,9 +3,79 @@
 const quilts = [];
 var gridSize;
 var step;
+var row;
+var col;
+var highlighted;
 
 function setup() {
+
   createCanvas(800, 800);
+
+  loadQuilts();
+
+  gridSize = sqrt(quilts.length);
+  step = width / gridSize;
+
+}
+
+function draw() {
+
+  //assigning integers to my mouse position
+  row = floor(mouseX/step);
+  col = floor(mouseY/step);
+
+  //when i click the mouse it repeats the given square, when i move it it resets
+  if(highlighted == null){
+    tileQuilt();
+  }else{
+    repeatQuilt();
+  }
+
+  //highlights square
+  fill(255,80);
+  stroke(255);
+  strokeWeight(1);
+  rect(step*row, step*col, step, step);
+
+}
+
+function mousePressed(){
+
+  highlighted = col*5 + row;
+
+}
+
+function mouseMoved(){
+
+  highlighted = null;
+
+}
+
+function tileQuilt() {
+
+  var x = 0;
+  var y = 0;
+  for (const quilt of quilts) {
+    image(quilt, x, y, step, step);
+    x += step;
+    if (x >= width) {
+      x = 0;
+      y += step;
+    }
+  }  
+}
+
+function repeatQuilt(){
+
+  for(x = 0; x < width; x += step){
+    for(y = 0; y < height; y += step){
+      image(quilts[highlighted], x, y, step, step);
+    }
+  }
+}
+
+function loadQuilts(){
+
   quilts.push(loadImage('quilts/redBorder.jpg'));
   quilts.push(loadImage('quilts/pinkMandala.jpg'));
   quilts.push(loadImage('quilts/parasol.jpg'));
@@ -32,30 +102,4 @@ function setup() {
   quilts.push(loadImage('quilts/blue.jpg'));
   quilts.push(loadImage('quilts/blobs.jpg'));
 
-  gridSize = sqrt(quilts.length);
-  step = width / gridSize;
-  
-}
-
-function draw() {
-  tileQuilt();
-  var row = floor(mouseX/step);
-  var col = floor(mouseY/step);
-  fill(255,100);
-  stroke(255);
-  strokeWeight(3);
-  rect(step*row, step*col, step, step);
-}
-
-function tileQuilt() {
-  var x = 0;
-  var y = 0;
-  for (const quilt of quilts) {
-    image(quilt, x, y, step, step);
-    x += step;
-    if (x >= width) {
-      x = 0;
-      y += step;
-    }
-  }  
 }
