@@ -56,6 +56,12 @@ function mouseMoved(){
 
 }
 
+function keyPressed() {
+  if (key == ' ') {
+    shuffle(quilts, true);
+  }
+}
+
 function tileQuilt() {
 
   var x = 0;
