@@ -6,6 +6,7 @@ var step;
 var row;
 var col;
 var highlighted;
+const rotations = [];
 
 function setup() {
 
@@ -15,6 +16,10 @@ function setup() {
 
   gridSize = sqrt(quilts.length);
   step = width / gridSize;
+
+  frameRate(10);
+
+  rotations.push(PI/2, PI, 3*PI/2, 2*PI);
 
 }
 
@@ -67,11 +72,17 @@ function tileQuilt() {
 
 function repeatQuilt(){
 
+  imageMode(CENTER);
   for(x = 0; x < width; x += step){
     for(y = 0; y < height; y += step){
-      image(quilts[highlighted], x, y, step, step);
+      push();
+      translate(x + step/2, y + step/2);
+      rotate(random(rotations));
+      image(quilts[highlighted], 0, 0, step, step);
+      pop();
     }
   }
+  imageMode(CORNER);
 }
 
 function loadQuilts(){
